@@ -16,7 +16,7 @@ value -> bool       : unwrap('$1').
 % providers and variables, and other objects that only have
 % one identifier 
 
-% nested block code 
+% nested block code with no equal sign
 block -> open_curly attrs close_curly                   : '$2'.
 block -> open_curly close_curly                         : #{}.
 
@@ -26,6 +26,8 @@ blocks -> block : block_processor('$1').
 block -> identifier string open_curly close_curly              : #{ unwrap('$1') => #{ unwrap('$2') => {} } }.
 block -> identifier string open_curly attrs close_curly        : #{ unwrap('$1') => #{ unwrap('$2') => '$4'}}.
 block -> identifier string string open_curly close_curly       : #{ unwrap('$1') => #{ unwrap('$2') => #{ unwrap('$3') => {} } } }.
+block -> identifier string string open_curly attrs close_curly : #{ unwrap('$1') => #{ unwrap('$2') => #{ unwrap('$3') => '$5' } } }.
+
 
 attrs -> attr attrs : put_tuple('$1', '$2').
 attrs -> attr : put_tuple('$1').
@@ -35,6 +37,7 @@ attr -> identifier equal number     :  {unwrap('$1'), unwrap('$3')}.
 attr -> identifier equal float      :  {unwrap('$1'), unwrap('$3')}.
 attr -> identifier equal bool       :  {unwrap('$1'), unwrap('$3')}.
 attr -> identifier equal array      :  {unwrap('$1'), '$3'}.
+attr -> identifier equal block      :  {unwrap('$1'), '$3'}.
 attr -> identifier block            :  {unwrap('$1'), '$2'}.
 
 array -> open_array list close_array : '$2'.
