@@ -1,5 +1,9 @@
 defmodule HCLParser do
 
+  @moduledoc """
+  Provides access to HCLParser parse method.
+  """
+
   @doc """
   Parses a terraform file, and returns a map structure representing it.
 
@@ -9,11 +13,9 @@ defmodule HCLParser do
 
   ## Examples
 
-      iex> content = 'provider "google" {}'
-
-      iex> HCLParser.parse(content)
+      iex> content = 'provider "google" {}' |>  HCLParser.parse
       {:ok, %{"provider" => %{"google" => {}}}}
-
+      
   """
   def parse(content) when is_bitstring(content), do: content |> String.to_charlist() |> parse()
   def parse(content) do
