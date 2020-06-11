@@ -6,9 +6,24 @@ defmodule HCLParser.MixProject do
       app: :hclparser,
       version: "0.1.0",
       elixir: "~> 1.10",
+      description: description(), 
+      package: package(),
+      source_url: "https://github.com/ilovemysillybanana/hclparser",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
+  end
+
+  defp package do
+    [
+      name: "hclparser",
+      licenses: ["GPL-2.0-or-later"],
+      links: %{"GitHub" => "https://github.com/ilovemysillybanana/hclparser"}
+    ]
+  end
+
+  defp description do
+    "A package to read Terraform 0.12.0 into an elixir manageable data structure."
   end
 
   # Run "mix help compile.app" to learn about applications.
