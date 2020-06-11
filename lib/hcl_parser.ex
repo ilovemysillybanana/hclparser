@@ -14,7 +14,7 @@ defmodule HCLParser do
   ## Examples
 
       iex> content = 'provider "google" {}' |>  HCLParser.parse
-      {:ok, %{"provider" => %{"google" => {}}}}
+      {:ok, %{provider: %{"google" => {}}}}
       
   """
   def parse(content) when is_bitstring(content), do: content |> String.to_charlist() |> parse()

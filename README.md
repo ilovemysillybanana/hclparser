@@ -41,31 +41,32 @@ tf_code = '
 
   # returns the following:
   ex(2)> HCLParser.parse(tf_code)
+HCLParser.parse(tf_code)
 {:ok,
  %{
-   "resource" => %{
+   resource: %{
      "google_compute_instance" => %{
        "test1" => %{
-         "allow_stopping_for_update" => true,
-         "machine_type" => "n1-standard-1",
-         "metadata" => %{"foo" => "bar"},
-         "name" => "test",
-         "service_account" => %{
-           "scopes" => ["userinfo-email", "compute-ro", "storage-ro"]
+         allow_stopping_for_update: true,
+         machine_type: "n1-standard-1",
+         metadata: %{foo: "bar"},
+         name: "test",
+         service_account: %{
+           scopes: ["userinfo-email", "compute-ro", "storage-ro"]
          },
-         "tags" => ["foo", "bar"],
-         "zone" => "us-central1-a"
+         tags: ["foo", "bar"],
+         zone: "us-central1-a"
        },
        "test2" => %{
-         "allow_stopping_for_update" => true,
-         "machine_type" => "n1-standard-1",
-         "metadata" => %{"foo" => "bar"},
-         "name" => "test",
-         "service_account" => %{
-           "scopes" => ["userinfo-email", "compute-ro", "storage-ro"]
+         allow_stopping_for_update: true,
+         machine_type: "n1-standard-1",
+         metadata: %{foo: "bar"},
+         name: "test",
+         service_account: %{
+           scopes: ["userinfo-email", "compute-ro", "storage-ro"]
          },
-         "tags" => ["foo", "bar"],
-         "zone" => "us-central1-a"
+         tags: ["foo", "bar"],
+         zone: "us-central1-a"
        }
      }
    }

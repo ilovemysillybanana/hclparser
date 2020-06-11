@@ -35,6 +35,6 @@ Rules.
 {String}                                      : {token, {string, TokenLine, list_to_binary(string:trim(TokenChars, both, "\""))}}.
 
 % Terraform has identifiers in the name of "resources", "variables", "providers", etc
-{Identifier} : {token, {identifier, TokenLine, list_to_binary(string:trim(TokenChars, both, "\""))}}.
+{Identifier} : {token, {identifier, TokenLine, list_to_atom(string:trim(TokenChars, both, "\""))}}.
 
 Erlang code.

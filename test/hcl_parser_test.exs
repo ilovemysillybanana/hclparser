@@ -4,7 +4,7 @@ defmodule HCLParserTest do
 
   test "reads a provider" do
     tf_code = 'provider "google" {}'
-    expected = %{"provider" => %{"google" => {}}}
+    expected = %{provider: %{"google" => {}}}
 
     assert HCLParser.parse(tf_code) == {:ok, expected}
   end
@@ -16,10 +16,10 @@ defmodule HCLParserTest do
     }'
 
     expected = %{
-      "provider" => %{
+      provider: %{
         "google" => %{
-          "project" => "my-project-id",
-          "region" => "us-central1"
+          project: "my-project-id",
+          region: "us-central1"
         }
       }
     }
@@ -31,7 +31,7 @@ defmodule HCLParserTest do
     tf_code = 'resource "google_compute_instance" "default" {}'
 
     expected = %{
-      "resource" => %{"google_compute_instance" => %{"default" => {}}}
+      resource: %{"google_compute_instance" => %{"default" => {}}}
     }
 
     assert HCLParser.parse(tf_code) == {:ok, expected}
@@ -55,16 +55,16 @@ defmodule HCLParserTest do
     '
 
     expected = %{
-      "resource" => %{
+      resource: %{
         "google_compute_instance" => %{
           "default" => %{
-            "name" => "test",
-            "zone" => "us-central1-a",
-            "machine_type" => "n1-standard-1",
-            "tags" => ["foo", "bar"],
-            "allow_stopping_for_update" => true,
-            "metadata" => %{"foo" => "bar"},
-            "service_account" => %{"scopes" => ["userinfo-email", "compute-ro", "storage-ro"]}
+            name: "test",
+            zone: "us-central1-a",
+            machine_type: "n1-standard-1",
+            tags: ["foo", "bar"],
+            allow_stopping_for_update: true,
+            metadata: %{foo: "bar"},
+            service_account:  %{ scopes: ["userinfo-email", "compute-ro", "storage-ro"]}
           }
         }
       }
@@ -93,19 +93,19 @@ defmodule HCLParserTest do
     '
 
     expected = %{
-      "resource" => %{
+      resource: %{
         "google_compute_instance" => %{
           "default" => %{
-            "name" => "test",
-            "zone" => "us-central1-a",
-            "machine_type" => "n1-standard-1",
-            "tags" => ["foo", "bar"],
-            "allow_stopping_for_update" => true,
-            "service_account" => %{"scopes" => ["userinfo-email", "compute-ro", "storage-ro"]}
+            name: "test",
+            zone: "us-central1-a",
+            machine_type: "n1-standard-1",
+            tags: ["foo", "bar"],
+            allow_stopping_for_update: true,
+            service_account: %{scopes: ["userinfo-email", "compute-ro", "storage-ro"]}
           }
         }
       },
-      "provider" => %{"google" => %{"project" => "my-project-id", "region" => "us-central1"}}
+      provider: %{"google" => %{project: "my-project-id", region: "us-central1"}}
     }
 
     assert HCLParser.parse(tf_code) == {:ok, expected}
@@ -143,25 +143,25 @@ defmodule HCLParserTest do
     '
 
     expected = %{
-      "resource" => %{
+      resource: %{
         "google_compute_instance" => %{
           "test1" => %{
-            "name" => "test",
-            "zone" => "us-central1-a",
-            "machine_type" => "n1-standard-1",
-            "tags" => ["foo", "bar"],
-            "allow_stopping_for_update" => true,
-            "metadata" => %{"foo" => "bar"},
-            "service_account" => %{"scopes" => ["userinfo-email", "compute-ro", "storage-ro"]}
+            name: "test",
+            zone: "us-central1-a",
+            machine_type: "n1-standard-1",
+            tags: ["foo", "bar"],
+            allow_stopping_for_update: true,
+            metadata: %{ foo: "bar"},
+            service_account: %{scopes: ["userinfo-email", "compute-ro", "storage-ro"]}
           },
           "test2" => %{
-            "allow_stopping_for_update" => true,
-            "machine_type" => "n1-standard-1",
-            "metadata" => %{"foo" => "bar"},
-            "name" => "test",
-            "service_account" => %{"scopes" => ["userinfo-email", "compute-ro", "storage-ro"]},
-            "tags" => ["foo", "bar"],
-            "zone" => "us-central1-a"
+            allow_stopping_for_update: true,
+            machine_type: "n1-standard-1",
+            metadata: %{foo: "bar"},
+            name: "test",
+            service_account: %{scopes: ["userinfo-email", "compute-ro", "storage-ro"]},
+            tags: ["foo", "bar"],
+            zone: "us-central1-a"
           }
         }
       }

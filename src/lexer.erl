@@ -702,6 +702,6 @@ yyaction_12(TokenChars, TokenLine) ->
 -compile({inline,yyaction_13/2}).
 -file("src/lexer.xrl", 36).
 yyaction_13(TokenChars, TokenLine) ->
-     { token, { identifier, TokenLine, list_to_binary (string : trim (TokenChars, both, "\"")) } } .
+     { token, { identifier, TokenLine, list_to_atom (string : trim (TokenChars, both, "\"")) } } .
 
 -file("/usr/local/Cellar/erlang/22.3.3/lib/erlang/lib/parsetools-2.1.8/include/leexinc.hrl", 313).
